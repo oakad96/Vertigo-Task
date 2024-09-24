@@ -47,7 +47,7 @@ public class WheelController : MonoBehaviour
     public void ResetWheel()
     {
         _spinCounter.ResetSpinCount();
-        wheelImage.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        wheelImage.rectTransform.rotation = Quaternion.identity;
         ChangeWheelSprite(1);
     }
 
@@ -56,34 +56,32 @@ public class WheelController : MonoBehaviour
         if (_isSpinning || _inSpriteChangeAnimation) return;
         _isSpinning = true;
         EventManager.OnWheelSpun.Invoke();
-        StartCoroutine(Spin());
-        _spinCounter.IncreaseSpinCount();
+        StartSpin();
     }
-
-    private System.Collections.IEnumerator Spin()
+    private void StartSpin()
     {
         float spinTime = Random.Range(0.25f, 0.5f); // Random spin duration
-        float elapsedTime = 0f;
+        float totalSpinAngle = spinSpeed * spinTime; // Total spin angle
 
-        while (elapsedTime < spinTime)
-        {
-            wheelImage.transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        wheelImage.transform.DORotate(new Vector3(0, 0, -totalSpinAngle), spinTime, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                float slowDownTime = spinTime * 6;  // Slow down duration
+                float finalSlowSpinAngle = Mathf.Lerp(totalSpinAngle, totalSpinAngle + 180f, 1); // Adjust for final spin
 
-        float slowDownTime = 0.25f;
-        while (slowDownTime > 0)
-        {
-            wheelImage.transform.Rotate(0f, 0f, Mathf.Lerp(spinSpeed, 0, 1 - slowDownTime / 2f) * Time.deltaTime);
-            slowDownTime -= Time.deltaTime;
-            yield return null;
-        }
-
-        _isSpinning = false;
-        _finalRotation = wheelImage.transform.eulerAngles.z;
-        DetermineReward(_finalRotation);
+                wheelImage.transform.DORotate(new Vector3(0, 0, -finalSlowSpinAngle), slowDownTime, RotateMode.FastBeyond360)
+                    .SetEase(Ease.OutQuad) // Ease out for the slow down effect
+                    .OnComplete(() =>
+                    {
+                        _isSpinning = false;
+                        _finalRotation = wheelImage.transform.eulerAngles.z;
+                        DetermineReward(_finalRotation);  // Your custom method to determine the result
+                        _spinCounter.IncreaseSpinCount();
+                    });
+            });
     }
+    
 
     private void SetupWheel()
     {
@@ -91,7 +89,7 @@ public class WheelController : MonoBehaviour
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
         float aspectRatio = screenWidth / screenHeight;
-        
+
         float dynamicRadius = _radius * Mathf.Min(1f, aspectRatio / defaultAspectRatio);
         float angleStep = 360f / wheelSegments.Count;
 
@@ -111,7 +109,7 @@ public class WheelController : MonoBehaviour
         }
     }
 
-    // Method to calculate the position on a circle based on an angle
+    // Method to calculate the position4 on a circle based on an angle
     private Vector3 GetPositionOnCircle(Vector3 center, float radius, float angleDegrees)
     {
         float angleRadians = angleDegrees * Mathf.Deg2Rad;
