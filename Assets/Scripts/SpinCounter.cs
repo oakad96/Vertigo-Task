@@ -36,7 +36,7 @@ public class SpinCounter : MonoBehaviour
         spinCountText.text = _spinCount.ToString();
     }
 
-    private void ResetSpinCount()
+    public void ResetSpinCount()
     {
         _spinCount = 0;
         UpdateSpinCountText();

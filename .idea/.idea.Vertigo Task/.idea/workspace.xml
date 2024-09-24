@@ -19,6 +19,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameOverPanelController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WheelSegment.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WheelSegmentDisplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.8.17/Runtime/Intrinsics/Common.cs" root0="SKIP_HIGHLIGHTING" />
@@ -104,7 +105,7 @@
       <updated>1727182241802</updated>
       <workItem from="1727182244478" duration="5132000" />
       <workItem from="1727187444278" duration="547000" />
-      <workItem from="1727189667265" duration="9666000" />
+      <workItem from="1727189667265" duration="10355000" />
     </task>
     <servers />
   </component>

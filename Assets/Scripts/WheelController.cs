@@ -15,6 +15,7 @@ public class WheelController : MonoBehaviour
     private float _segmentAngle;
     private float _radius = 110;
     public GameObject wheelSegmentPrefab;
+    public GameObject tryAgainPanel;
     [FormerlySerializedAs("_wheelCenter")] public Transform wheelCenter;
 
     [SerializeField] private List<WheelSegment> wheelSegments = new(8);
@@ -36,6 +37,12 @@ public class WheelController : MonoBehaviour
         _segmentCount = wheelSegments.Count;
         _segmentAngle = 360f / _segmentCount;
         SetupWheel();
+    }
+
+    public void ResetWheel()
+    {
+        _spinCounter.ResetSpinCount();
+        ChangeWheelSprite(1);
     }
 
     public void SpinWheel()
@@ -68,7 +75,7 @@ public class WheelController : MonoBehaviour
         }
 
         _isSpinning = false;
-        _finalRotation = transform.eulerAngles.z;
+        _finalRotation = wheelImage.transform.eulerAngles.z;
         DetermineReward(_finalRotation);
     }
 
@@ -118,6 +125,7 @@ public class WheelController : MonoBehaviour
         {
             EventManager.OnBombHit.Invoke();
             Debug.Log("You lose;");
+            tryAgainPanel.SetActive(true);
         }
         else
         {
