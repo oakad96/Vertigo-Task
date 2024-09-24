@@ -81,26 +81,25 @@ public class WheelController : MonoBehaviour
 
     private void SetupWheel()
     {
-        // Calculate the angle between each segment (360 degrees / number of segments)
+        float defaultAspectRatio = 16f / 9f;
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+        float aspectRatio = screenWidth / screenHeight;
+        
+        float dynamicRadius = _radius * Mathf.Min(1f, aspectRatio / defaultAspectRatio);
         float angleStep = 360f / wheelSegments.Count;
 
-        // Loop through each segment
         for (int i = 0; i < wheelSegments.Count; i++)
         {
-            // Instantiate the segment prefab
             GameObject segmentObj = Instantiate(wheelSegmentPrefab, wheelCenter);
 
-            // Calculate the angle for this segment
             float angle = i * angleStep;
 
-            // Position the segment in a circular fashion around the wheel center
-            Vector3 position = GetPositionOnCircle(wheelCenter.position, _radius, angle);
+            Vector3 position = GetPositionOnCircle(wheelCenter.position, dynamicRadius, angle);
             segmentObj.transform.position = position;
 
-            // Rotate the segment to face outward
             segmentObj.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
-            // Set the segment data (update the sprite and text)
             WheelSegmentDisplay segmentDisplay = segmentObj.GetComponent<WheelSegmentDisplay>();
             segmentDisplay.SetSegmentData(wheelSegments[i]);
         }
