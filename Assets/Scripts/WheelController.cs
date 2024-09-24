@@ -41,6 +41,7 @@ public class WheelController : MonoBehaviour
     {
         if (_isSpinning) return;
         _isSpinning = true;
+        EventManager.OnWheelSpun.Invoke();
         StartCoroutine(Spin());
         _spinCounter.IncreaseSpinCount();
     }
@@ -114,10 +115,12 @@ public class WheelController : MonoBehaviour
 
         if (stoppedSegment.isBomb)
         {
+            EventManager.OnBombHit.Invoke();
             Debug.Log("You lose;");
         }
         else
         {
+            EventManager.OnRewardHit.Invoke();
             Debug.Log("You win;" + stoppedSegment.segmentName);
         }
     }
