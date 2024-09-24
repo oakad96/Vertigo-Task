@@ -9,13 +9,14 @@ using Random = UnityEngine.Random;
 public class WheelController : MonoBehaviour
 {
     private bool _isSpinning = false;
+    private bool _inSpriteChangeAnimation = false;
     private float _finalRotation = 0f;
     private int _segmentCount;
     private float _segmentAngle;
     private float _radius = 110;
     public GameObject wheelSegmentPrefab;
     [FormerlySerializedAs("_wheelCenter")] public Transform wheelCenter;
-    
+
     [SerializeField] private List<WheelSegment> wheelSegments = new(8);
     [NonSerialized] public SpinCounter _spinCounter;
 
@@ -39,7 +40,7 @@ public class WheelController : MonoBehaviour
 
     public void SpinWheel()
     {
-        if (_isSpinning) return;
+        if (_isSpinning || _inSpriteChangeAnimation) return;
         _isSpinning = true;
         EventManager.OnWheelSpun.Invoke();
         StartCoroutine(Spin());
@@ -70,7 +71,7 @@ public class WheelController : MonoBehaviour
         _finalRotation = transform.eulerAngles.z;
         DetermineReward(_finalRotation);
     }
-    
+
     private void SetupWheel()
     {
         // Calculate the angle between each segment (360 degrees / number of segments)
@@ -90,7 +91,7 @@ public class WheelController : MonoBehaviour
             segmentObj.transform.position = position;
 
             // Rotate the segment to face outward
-            segmentObj.transform.rotation = Quaternion.Euler(0, 0, angle-90f);
+            segmentObj.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
             // Set the segment data (update the sprite and text)
             WheelSegmentDisplay segmentDisplay = segmentObj.GetComponent<WheelSegmentDisplay>();
@@ -110,7 +111,7 @@ public class WheelController : MonoBehaviour
     private void DetermineReward(float finalAngle)
     {
         int segmentIndex = Mathf.FloorToInt((finalAngle % 360) / _segmentAngle);
-        
+
         WheelSegment stoppedSegment = wheelSegments[segmentIndex];
 
         if (stoppedSegment.isBomb)
@@ -124,11 +125,44 @@ public class WheelController : MonoBehaviour
             Debug.Log("You win;" + stoppedSegment.segmentName);
         }
     }
-    
-    
+
 
     public void ChangeWheelSprite(int option)
     {
-        //TODO 
+        _inSpriteChangeAnimation = true;
+        if (option == 1)
+        {
+            wheelImage.transform.DOScale(0f, 0.5f)
+                .SetEase(Ease.OutBounce)
+                .SetDelay(1f)
+                .OnComplete(() =>
+                {
+                    wheelImage.sprite = bronzeWheelSprite;
+                    wheelImage.transform.DOScale(1f, 0.5f);
+                    _inSpriteChangeAnimation = false;
+                });
+        }
+        else if (option == 2)
+        {
+            wheelImage.transform.DOScale(0f, 0.5f)
+                .SetEase(Ease.OutBounce).SetDelay(1f)
+                .OnComplete(() =>
+                {
+                    wheelImage.sprite = silverWheelSprite;
+                    wheelImage.transform.DOScale(1f, 0.5f);
+                    _inSpriteChangeAnimation = false;
+                });
+        }
+        else if (option == 3)
+        {
+            wheelImage.transform.DOScale(0f, 0.5f)
+                .SetEase(Ease.OutBounce).SetDelay(1f)
+                .OnComplete(() =>
+                {
+                    wheelImage.sprite = goldWheelSprite;
+                    wheelImage.transform.DOScale(1f, 0.5f);
+                    _inSpriteChangeAnimation = false;
+                });
+        }
     }
 }

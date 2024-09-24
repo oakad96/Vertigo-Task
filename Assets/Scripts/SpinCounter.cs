@@ -17,14 +17,17 @@ public class SpinCounter : MonoBehaviour
     {
         _spinCount++;
         UpdateSpinCountText();
-
-        if (_spinCount % 5 == 0)
+        if ((_spinCount % 30 == 1 || _spinCount % 5 == 1) && _spinCount != 1)
         {
-            ChangeWheelToSilver();
+            ChangeWheelToBronze();
         }
         else if (_spinCount % 30 == 0)
         {
             ChangeWheelToGold();
+        }
+        else if (_spinCount % 5 == 0)
+        {
+            ChangeWheelToSilver();
         }
     }
 
