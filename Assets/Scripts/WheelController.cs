@@ -27,10 +27,18 @@ public class WheelController : MonoBehaviour
 
     [Header("Spin Speed")] public float spinSpeed = 500f; // Speed of rotation
 
-    [Header("Wheel Sprites")] public Image wheelImage;
+    [Header("Wheel Sprites")] 
+    public Image wheelImage;
     public Sprite bronzeWheelSprite;
     public Sprite silverWheelSprite;
     public Sprite goldWheelSprite;
+    
+    [Header("Tick Images")]
+    public Image tickImage;
+    public Sprite bronzeTickImage;
+    public Sprite silverTickImage;
+    public Sprite goldTickImage;
+    
 
     [Header("UI Elements")] public Button spinButton;
 
@@ -152,6 +160,7 @@ public class WheelController : MonoBehaviour
                     wheelImage.transform.DOScale(1f, 0.5f);
                     _inSpriteChangeAnimation = false;
                     takeRewardsNotifications.SetActive(false);
+                    tickImage.sprite = bronzeTickImage;
                 });
         }
         else if (option == 2)
@@ -164,6 +173,7 @@ public class WheelController : MonoBehaviour
                     wheelImage.transform.DOScale(1f, 0.5f);
                     _inSpriteChangeAnimation = false;
                     takeRewardsNotifications.SetActive(true);
+                    tickImage.sprite = silverTickImage;
                 });
         }
         else if (option == 3)
@@ -176,6 +186,7 @@ public class WheelController : MonoBehaviour
                     wheelImage.transform.DOScale(1f, 0.5f);
                     _inSpriteChangeAnimation = false;
                     takeRewardsNotifications.SetActive(true);
+                    tickImage.sprite = goldTickImage;
                 });
         }
     }

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 232985964}
   - component: {fileID: 232985963}
   m_Layer: 5
-  m_Name: Button
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,6 +669,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelSegmentPrefab: {fileID: 6110141620826279539, guid: 4ae3972ef7fb20f418582fed8bb78142, type: 3}
   tryAgainPanel: {fileID: 570122107}
+  takeRewardsPanel: {fileID: 1564130643}
+  takeRewardsButton: {fileID: 355667597}
   wheelCenter: {fileID: 717827491}
   takeRewardsNotifications: {fileID: 1936430282}
   wheelSegments:
@@ -709,6 +711,10 @@ MonoBehaviour:
   bronzeWheelSprite: {fileID: 21300000, guid: 19681c5016aa9d943b2e8bce48629549, type: 3}
   silverWheelSprite: {fileID: 21300000, guid: 5f1578fea10200445a48d314e91ca6f4, type: 3}
   goldWheelSprite: {fileID: 21300000, guid: 24243295e583fcc4f9d89889c4fc48e9, type: 3}
+  tickImage: {fileID: 1808906649}
+  bronzeTickImage: {fileID: 21300000, guid: d4749177e8177d043a685d9a0741365c, type: 3}
+  silverTickImage: {fileID: 21300000, guid: eb250b7844ad35448af8606eabfd12a7, type: 3}
+  goldTickImage: {fileID: 21300000, guid: a765da54ae31ae04c9cc2dedf4a34b2d, type: 3}
   spinButton: {fileID: 1117946899}
 --- !u!1 &549703379
 GameObject:
