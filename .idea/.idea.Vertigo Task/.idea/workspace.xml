@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8be8797d-459a-4016-a189-938f282e14ae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Vertigo Task/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Vertigo Task/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainGameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainGameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WheelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WheelController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,7 @@
       <updated>1727182241802</updated>
       <workItem from="1727182244478" duration="5132000" />
       <workItem from="1727187444278" duration="547000" />
-      <workItem from="1727189667265" duration="6481000" />
+      <workItem from="1727189667265" duration="7140000" />
     </task>
     <servers />
   </component>
