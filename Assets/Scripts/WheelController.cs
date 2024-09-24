@@ -16,7 +16,11 @@ public class WheelController : MonoBehaviour
     private float _radius = 110;
     public GameObject wheelSegmentPrefab;
     public GameObject tryAgainPanel;
+    public GameObject takeRewardsPanel;
+    public Button takeRewardsButton;
     [FormerlySerializedAs("_wheelCenter")] public Transform wheelCenter;
+
+    public GameObject takeRewardsNotifications;
 
     [SerializeField] private List<WheelSegment> wheelSegments = new(8);
     [NonSerialized] public SpinCounter _spinCounter;
@@ -34,6 +38,7 @@ public class WheelController : MonoBehaviour
     {
         _spinCounter = FindObjectOfType<SpinCounter>();
         spinButton.onClick.AddListener(SpinWheel);
+        takeRewardsButton.onClick.AddListener(TakeRewards);
         _segmentCount = wheelSegments.Count;
         _segmentAngle = 360f / _segmentCount;
         SetupWheel();
@@ -42,6 +47,7 @@ public class WheelController : MonoBehaviour
     public void ResetWheel()
     {
         _spinCounter.ResetSpinCount();
+        wheelImage.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         ChangeWheelSprite(1);
     }
 
@@ -147,6 +153,7 @@ public class WheelController : MonoBehaviour
                     wheelImage.sprite = bronzeWheelSprite;
                     wheelImage.transform.DOScale(1f, 0.5f);
                     _inSpriteChangeAnimation = false;
+                    takeRewardsNotifications.SetActive(false);
                 });
         }
         else if (option == 2)
@@ -158,6 +165,7 @@ public class WheelController : MonoBehaviour
                     wheelImage.sprite = silverWheelSprite;
                     wheelImage.transform.DOScale(1f, 0.5f);
                     _inSpriteChangeAnimation = false;
+                    takeRewardsNotifications.SetActive(true);
                 });
         }
         else if (option == 3)
@@ -169,7 +177,14 @@ public class WheelController : MonoBehaviour
                     wheelImage.sprite = goldWheelSprite;
                     wheelImage.transform.DOScale(1f, 0.5f);
                     _inSpriteChangeAnimation = false;
+                    takeRewardsNotifications.SetActive(true);
                 });
         }
+    }
+
+    private void TakeRewards()
+    {
+        takeRewardsNotifications.SetActive(false);
+        takeRewardsPanel.SetActive(true);
     }
 }
