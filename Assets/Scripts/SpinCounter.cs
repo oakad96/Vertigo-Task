@@ -26,30 +26,25 @@ public class SpinCounter : MonoBehaviour
         {
             ChangeWheelToGold();
         }
-        else
-        {
-            ChangeWheelToBronze();
-        }
     }
 
     private void UpdateSpinCountText()
     {
         spinCountText.text = _spinCount.ToString();
     }
-    
+
     private void ChangeWheelToBronze()
     {
         wheelController.ChangeWheelSprite(1);
     }
-    
+
     private void ChangeWheelToSilver()
     {
-        wheelController.ChangeWheelSprite(1);
+        wheelController.ChangeWheelSprite(2);
     }
 
     private void ChangeWheelToGold()
     {
-        wheelController.ChangeWheelSprite(1);
+        wheelController.ChangeWheelSprite(3);
     }
-
 }
