@@ -33,6 +33,12 @@ public class SpinCounter : MonoBehaviour
         spinCountText.text = _spinCount.ToString();
     }
 
+    private void ResetSpinCount()
+    {
+        _spinCount = 0;
+        UpdateSpinCountText();
+    }
+
     private void ChangeWheelToBronze()
     {
         wheelController.ChangeWheelSprite(1);

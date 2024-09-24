@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 334220017}
   - component: {fileID: 334220016}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TakeRewardsButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,9 +355,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -502,6 +502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495219719}
+  - component: {fileID: 495219720}
   m_Layer: 5
   m_Name: Wheel
   m_TagString: Untagged
@@ -532,6 +533,59 @@ RectTransform:
   m_AnchoredPosition: {x: 250, y: 0}
   m_SizeDelta: {x: 960, y: 960}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &495219720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495219718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86e22f4c77966b48b4c8a1ca1e84ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelSegmentPrefab: {fileID: 6110141620826279539, guid: 4ae3972ef7fb20f418582fed8bb78142, type: 3}
+  wheelCenter: {fileID: 717827491}
+  wheelSegments:
+  - segmentName: 1
+    segmentSprite: {fileID: 21300000, guid: 62debdbd6a45a80408c00eaae702d6b4, type: 3}
+    rewardAmount: 1
+    isBomb: 0
+  - segmentName: 1
+    segmentSprite: {fileID: 21300000, guid: ecedeb7e670bf6f4b8f0b675d6899f4c, type: 3}
+    rewardAmount: 2
+    isBomb: 1
+  - segmentName: 3
+    segmentSprite: {fileID: 21300000, guid: 1dc93369e2bd5784cbcc10ff604bc3df, type: 3}
+    rewardAmount: 0
+    isBomb: 0
+  - segmentName: 4
+    segmentSprite: {fileID: 21300000, guid: 228d3c4721704944384c38131a7c225e, type: 3}
+    rewardAmount: 0
+    isBomb: 0
+  - segmentName: 5
+    segmentSprite: {fileID: 21300000, guid: 974579efa1e16c546853a15d0973a96c, type: 3}
+    rewardAmount: 0
+    isBomb: 0
+  - segmentName: 6
+    segmentSprite: {fileID: 21300000, guid: e1eb9d0e56b67964e9dcf6f1a516e393, type: 3}
+    rewardAmount: 0
+    isBomb: 0
+  - segmentName: 7
+    segmentSprite: {fileID: 21300000, guid: e269833ad37a8fc42af51715c6f26df9, type: 3}
+    rewardAmount: 0
+    isBomb: 0
+  - segmentName: 8
+    segmentSprite: {fileID: 21300000, guid: 71b4b0d7579fe824fa87210ff319a16a, type: 3}
+    rewardAmount: 0
+    isBomb: 0
+  spinSpeed: 500
+  wheelImage: {fileID: 717827492}
+  bronzeWheelSprite: {fileID: 21300000, guid: 19681c5016aa9d943b2e8bce48629549, type: 3}
+  silverWheelSprite: {fileID: 21300000, guid: 5f1578fea10200445a48d314e91ca6f4, type: 3}
+  goldWheelSprite: {fileID: 21300000, guid: 24243295e583fcc4f9d89889c4fc48e9, type: 3}
+  spinButton: {fileID: 1117946899}
 --- !u!1 &549703379
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +784,6 @@ GameObject:
   - component: {fileID: 717827493}
   - component: {fileID: 717827492}
   - component: {fileID: 717827495}
-  - component: {fileID: 717827494}
   m_Layer: 5
   m_Name: WheelImage
   m_TagString: Untagged
@@ -772,9 +825,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -796,59 +849,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717827490}
   m_CullTransparentMesh: 1
---- !u!114 &717827494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717827490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f86e22f4c77966b48b4c8a1ca1e84ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheelSegmentPrefab: {fileID: 6110141620826279539, guid: 4ae3972ef7fb20f418582fed8bb78142, type: 3}
-  wheelCenter: {fileID: 717827491}
-  wheelSegments:
-  - segmentName: 1
-    segmentSprite: {fileID: 21300000, guid: 62debdbd6a45a80408c00eaae702d6b4, type: 3}
-    rewardAmount: 1
-    isBomb: 0
-  - segmentName: 1
-    segmentSprite: {fileID: 21300000, guid: ecedeb7e670bf6f4b8f0b675d6899f4c, type: 3}
-    rewardAmount: 2
-    isBomb: 1
-  - segmentName: 3
-    segmentSprite: {fileID: 21300000, guid: 1dc93369e2bd5784cbcc10ff604bc3df, type: 3}
-    rewardAmount: 0
-    isBomb: 0
-  - segmentName: 4
-    segmentSprite: {fileID: 21300000, guid: 228d3c4721704944384c38131a7c225e, type: 3}
-    rewardAmount: 0
-    isBomb: 0
-  - segmentName: 5
-    segmentSprite: {fileID: 21300000, guid: 974579efa1e16c546853a15d0973a96c, type: 3}
-    rewardAmount: 0
-    isBomb: 0
-  - segmentName: 6
-    segmentSprite: {fileID: 21300000, guid: e1eb9d0e56b67964e9dcf6f1a516e393, type: 3}
-    rewardAmount: 0
-    isBomb: 0
-  - segmentName: 7
-    segmentSprite: {fileID: 21300000, guid: e269833ad37a8fc42af51715c6f26df9, type: 3}
-    rewardAmount: 0
-    isBomb: 0
-  - segmentName: 8
-    segmentSprite: {fileID: 21300000, guid: 71b4b0d7579fe824fa87210ff319a16a, type: 3}
-    rewardAmount: 0
-    isBomb: 0
-  spinSpeed: 500
-  wheelImage: {fileID: 717827492}
-  bronzeWheelSprite: {fileID: 21300000, guid: 19681c5016aa9d943b2e8bce48629549, type: 3}
-  silverWheelSprite: {fileID: 21300000, guid: 5f1578fea10200445a48d314e91ca6f4, type: 3}
-  goldWheelSprite: {fileID: 21300000, guid: 24243295e583fcc4f9d89889c4fc48e9, type: 3}
-  spinButton: {fileID: 1117946899}
 --- !u!114 &717827495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,9 +1155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1276,9 +1276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1621,9 +1621,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
