@@ -53,7 +53,7 @@ public class WheelController : MonoBehaviour
 
         while (elapsedTime < spinTime)
         {
-            transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
+            wheelImage.transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -61,7 +61,7 @@ public class WheelController : MonoBehaviour
         float slowDownTime = 0.25f;
         while (slowDownTime > 0)
         {
-            transform.Rotate(0f, 0f, Mathf.Lerp(spinSpeed, 0, 1 - slowDownTime / 2f) * Time.deltaTime);
+            wheelImage.transform.Rotate(0f, 0f, Mathf.Lerp(spinSpeed, 0, 1 - slowDownTime / 2f) * Time.deltaTime);
             slowDownTime -= Time.deltaTime;
             yield return null;
         }
