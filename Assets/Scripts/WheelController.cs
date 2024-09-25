@@ -13,7 +13,9 @@ public class WheelController : MonoBehaviour
     private float _finalRotation = 0f;
     private int _segmentCount;
     private float _segmentAngle;
-    private float _radius = 110;
+    private float _radius;
+
+
     public GameObject wheelSegmentPrefab;
     public GameObject tryAgainPanel;
     public GameObject takeRewardsPanel;
@@ -27,28 +29,32 @@ public class WheelController : MonoBehaviour
 
     [Header("Spin Speed")] public float spinSpeed = 500f; // Speed of rotation
 
-    [Header("Wheel Sprites")] 
-    public Image wheelImage;
+    [Header("Wheel Sprites")] public Image wheelImage;
     public Sprite bronzeWheelSprite;
     public Sprite silverWheelSprite;
     public Sprite goldWheelSprite;
-    
-    [Header("Tick Images")]
-    public Image tickImage;
+
+    [Header("Tick Images")] public Image tickImage;
     public Sprite bronzeTickImage;
     public Sprite silverTickImage;
     public Sprite goldTickImage;
-    
+
 
     [Header("UI Elements")] public Button spinButton;
 
     private void Start()
     {
+        float deviceDPI = Screen.dpi;
+        float referenceDPI = 96f;
+        float dpiScale = deviceDPI / referenceDPI;
+            
         _spinCounter = FindObjectOfType<SpinCounter>();
         spinButton.onClick.AddListener(SpinWheel);
         takeRewardsButton.onClick.AddListener(TakeRewards);
         _segmentCount = wheelSegments.Count;
         _segmentAngle = 360f / _segmentCount;
+;
+        _radius = 0.325f * wheelImage.rectTransform.rect.width;
         SetupWheel();
     }
 
@@ -66,39 +72,36 @@ public class WheelController : MonoBehaviour
         EventManager.OnWheelSpun.Invoke();
         StartSpin();
     }
+
     private void StartSpin()
     {
-        float spinTime = Random.Range(0.25f, 0.5f); // Random spin duration
-        float totalSpinAngle = spinSpeed * spinTime; // Total spin angle
+        float spinTime = Random.Range(0.25f, 0.5f);
+        float totalSpinAngle = spinSpeed * spinTime;
 
         wheelImage.transform.DORotate(new Vector3(0, 0, -totalSpinAngle), spinTime, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
-                float slowDownTime = spinTime * 6;  // Slow down duration
-                float finalSlowSpinAngle = Mathf.Lerp(totalSpinAngle, totalSpinAngle + 180f, 1); // Adjust for final spin
+                float slowDownTime = spinTime * 6;
+                float finalSlowSpinAngle = Mathf.Lerp(totalSpinAngle, totalSpinAngle + 180f, 1);
 
-                wheelImage.transform.DORotate(new Vector3(0, 0, -finalSlowSpinAngle), slowDownTime, RotateMode.FastBeyond360)
-                    .SetEase(Ease.OutQuad) // Ease out for the slow down effect
+                wheelImage.transform.DORotate(new Vector3(0, 0, -finalSlowSpinAngle), slowDownTime,
+                        RotateMode.FastBeyond360)
+                    .SetEase(Ease.OutQuad)
                     .OnComplete(() =>
                     {
                         _isSpinning = false;
                         _finalRotation = wheelImage.transform.eulerAngles.z;
-                        DetermineReward(_finalRotation);  // Your custom method to determine the result
+                        DetermineReward(_finalRotation);
                         _spinCounter.IncreaseSpinCount();
                     });
             });
     }
-    
+
 
     private void SetupWheel()
     {
-        float defaultAspectRatio = 16f / 9f;
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
-        float aspectRatio = screenWidth / screenHeight;
-
-        float dynamicRadius = _radius * Mathf.Min(1f, aspectRatio / defaultAspectRatio);
+        float dynamicRadius = _radius;
         float angleStep = 360f / wheelSegments.Count;
 
         for (int i = 0; i < wheelSegments.Count; i++)
@@ -107,8 +110,8 @@ public class WheelController : MonoBehaviour
 
             float angle = i * angleStep;
 
-            Vector3 position = GetPositionOnCircle(wheelCenter.position, dynamicRadius, angle);
-            segmentObj.transform.position = position;
+            Vector3 position = GetPositionOnCircle(Vector3.zero, dynamicRadius, angle);
+            segmentObj.transform.localPosition = position;
 
             segmentObj.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
@@ -117,7 +120,6 @@ public class WheelController : MonoBehaviour
         }
     }
 
-    // Method to calculate the position4 on a circle based on an angle
     private Vector3 GetPositionOnCircle(Vector3 center, float radius, float angleDegrees)
     {
         float angleRadians = angleDegrees * Mathf.Deg2Rad;

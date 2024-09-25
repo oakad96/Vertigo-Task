@@ -625,6 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495219719}
   - component: {fileID: 495219720}
+  - component: {fileID: 495219721}
   m_Layer: 5
   m_Name: Wheel
   m_TagString: Untagged
@@ -653,7 +654,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 250, y: 0}
-  m_SizeDelta: {x: 960, y: 960}
+  m_SizeDelta: {x: 960, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495219720
 MonoBehaviour:
@@ -716,6 +717,20 @@ MonoBehaviour:
   silverTickImage: {fileID: 21300000, guid: eb250b7844ad35448af8606eabfd12a7, type: 3}
   goldTickImage: {fileID: 21300000, guid: a765da54ae31ae04c9cc2dedf4a34b2d, type: 3}
   spinButton: {fileID: 1117946899}
+--- !u!114 &495219721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495219718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &549703379
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +993,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 19681c5016aa9d943b2e8bce48629549, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1197,7 +1212,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
